@@ -1,0 +1,33 @@
+*{
+}
+
+form{
+	background: blue;
+	margin: 5px 60px;
+	height: 180px;
+	width:900px;
+	border-radius: 10px;
+}
+
+form ul{
+
+}
+
+form ul li{
+	list-style: none
+}
+
+form ul li h5{
+	padding:5px 5px;
+}
+
+form ul li input[type="textarea"]{
+	height: 80px;
+	width: 800px;
+	margin: -20px 0px;
+}
+
+form ul li input[type="submit"]{
+	margin: 30px 0 0px 710px;
+}
+
