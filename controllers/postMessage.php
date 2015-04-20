@@ -9,7 +9,13 @@
     run_mysql_query($query);
 
     $_SESSION['posts'] = $_SESSION['posts'] . $temp_post->getDescription();
-    $_SESSION['posts'] = fetch("select * from posts order by id desc");
+    $_SESSION['posts'] = fetch(join(" ",array(
+            "select posts.id,posts.created_at, users.user_name, posts.description from users",
+            "LEFT JOIN posts", 
+            "ON users.id = posts.user_id",
+            'order by posts.id desc'
+            )));
+
     header('Location: ../views/home.php');
 
 ?>

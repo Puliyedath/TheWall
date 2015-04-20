@@ -43,13 +43,16 @@
             }
         }else{
             //fix for the fact when the library returns only one row
-            $temp = $temp . "<li class='comment pcomment' ><p>{$messages['description']}</p></li>";
+            $date = new DateTime($message['created_at']);
+            $formateed_dateTime= $date->format('l jS F Y');
+            $temp = $temp . "<li class='comment pcomment' ><h5>{$messages['user_name']} wrote on $formateed_dateTime</h5><p>{$messages['description']}</p></li>";
+            //$temp = $temp . "<li class='comment pcomment' ><p>{$messages['description']}</p></li>";
         }
 
         $temp =  $temp . join("",array(
             "<li>",
             '<form class="comment" action="../controllers/postComment.php" method="post">',
-                '<input type="hidden" name="hpost_id" value="' . $post_id. '">',
+                '<input type="hidden" name="hpost_id" value="' . $post_id . '">',
                 '<input type="textarea" name="description" >',
                 '<input type="submit" name="Post a comment" value="Post a comment">',
             '</form>',
@@ -60,7 +63,8 @@
 ?>
         <ul>
 <?php 
-    foreach($_SESSION['posts'] as $key=>$post){
+    if (array_key_exists('description',$_SESSION['posts'])){
+        $post = $_SESSION['posts'];
         $date = new DateTime($post['created_at']);
         $formateed_dateTime= $date->format('l jS F Y');
         echo "<li class='pmessage message'>";
@@ -68,6 +72,17 @@
         echo "<p>{$post['description']}</p>";
         echo "</li>";
         echo getComments($post['id']);
+    }
+    else{
+        foreach($_SESSION['posts'] as $key=>$post){
+            $date = new DateTime($post['created_at']);
+            $formateed_dateTime= $date->format('l jS F Y');
+            echo "<li class='pmessage message'>";
+            echo "<h5>{$post['user_name']} wrote on $formateed_dateTime</h5>";
+            echo "<p>{$post['description']}</p>";
+            echo "</li>";
+            echo getComments($post['id']);
+        }
     }
 ?>
         </ul>

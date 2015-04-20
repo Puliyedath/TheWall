@@ -50,6 +50,7 @@ body{
 	background: gray;
 	font-style: italic;
 	border-radius: 10px 10px 0px 0px;
+	padding: 2px 0 0 5px;
 }
 
 .message ul li input[type="textarea"]{
