@@ -30,6 +30,13 @@ li{
 	margin-left: 900px;
 }
 
+#header > li > input{
+	background: none;
+	text-decoration: underline;
+	cursor: pointer;
+	font-size: 1.0em;
+}
+
 body{
 	background: lightgray;
 	font-size: 89.5%; /* Base font size: 14px */

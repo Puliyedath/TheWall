@@ -4,6 +4,13 @@
     require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
     require($_SERVER["DOCUMENT_ROOT"] . '/models/post.php');
 
+    //if the post is empty dont do anything 
+    if (!isset($_POST['description']) || empty($_POST['description']) || ($_POST['description'] === "")){
+        header('Location: ../views/home.php');
+        exit();
+    }
+
+
     $temp_post = new post($_POST, $_SESSION['user_id']);
     $query = $temp_post->createPosts();
     run_mysql_query($query);

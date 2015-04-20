@@ -1,59 +1,73 @@
 *{
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
-ul{
+p{
+	font-style: italic;
+	color: red;
+	font-size: 0.8em;
+	display: inline;
+	vertical-align: top;
+	width: 50px;
+	margin: 10px;
 }
 
+#container{
+	width: 90%;
+	background: gray;
+	text-align: center;
+	padding: 30px;
+	margin:50px 50px 50px 50px;
+}
 
-ul li{
-	list-style:none;
-	padding: 18px 40px;
-	font-size: 0.9em;
+ul li {
+	list-style: none;
+	padding: 5px;
+	align-content: left;
+	height: 25px;
+	width: 400px;
+	display: inline-block;
+	vertical-align: top;
 }
 
 form{
 	display: inline-block;
 	vertical-align: top;
-	width: 300px;
-	height: 300px;
-	border: 1px solid 3498db;
-	border-radius: 20px;
-	margin: 150px 70px;
-	background-color: #ecf0f1;
-	margin-left: 200px;
-}
-
-input[type="submit"]{
-	margin-left: 200px;
-	margin-top: 10px;
-	height: 25px;
-	width: 120px;
-	float: right;
-	clear: both;
-	font-size: 0.9em;
-	border: 1px solid none;
-	background-color: none;
-	color: white;
-	text-align: center;
-	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-	background: #3498db;
-	border: 0;
-	border-bottom: 2px solid #2a8bcc;
-	cursor: pointer;
-	-webkit-box-shadow: inset 0 -2px #2a8bcc;
-
+	margin: 30px;
+	background: #CCCC99;
+	width:500px;
+	border-radius: 10px;
+	padding: 10px 0;
 }
 
 input[type="text"]{
-	margin-left: 100px;
-	height: 23px;
-	width: 220px;
-	float: right;
+	height: 25px;
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid black;
+	background: lightgray;
+	display: inline-block;
+	vertical-align: top;
+	float: left;
 	clear: both;
-	border-radius: 5px ;
-	border: 1px solid #000000;
+	padding: 0 3px;
 }
 
+input[type="submit"]{
+	height: 25px;
+	width: 130px;
+	border-radius: 5px;
+	font-size: 0.8em;
+	font-style:italic;
+	background: lightgray;
+	border: 1px solid black;
+	float: left;
+	clear:both;
+	margin-left: 70px;
+
+}
 
 
 

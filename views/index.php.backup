@@ -1,0 +1,36 @@
+<!doctype html>
+<?php
+session_start();
+?>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+    <body>
+        <div id="container">
+            <h1>The Wall</h1>
+            <form id="login" action="../controllers/register.php" method="post">
+                <ul>
+                    <li><input type="text" name="user_name" placeholder="username"></li>
+                    <li><input type="text" name="password" placeholder="password"></li>
+                    <li><input type="submit" name="action" value="login"></li>
+                </ul>
+            </form>
+            <form id="register" action="../controllers/register.php" method="post">
+                <ul>
+                    <li><input type="text" name="first_name" placeholder="FirstName"><label><?php echo $_SESSION['errors']['first_name']?></label></li>
+                    <li><input type="text" name="last_name" placeholder="LastName"><label><?php echo $_SESSION['errors']['last_name']?></label></li>
+                    <li><input type="text" name="user_name" placeholder="UserName"><label><?php echo $_SESSION['errors']['user_name']?></label></li>
+                    <li><input type="text" name="email" placeholder="Email"><label><?php echo $_SESSION['errors']['email']?></label></li>
+                    <li><input type="text" name="password" placeholder="Password"><label><?php echo $_SESSION['errors']['password']?></label></li>
+                    <li><input type="submit" name="action" value="register"  ></li>
+                </ul>
+            </form>
+        </div>
+        <?php
+           $_SESSION['errors'] = null;
+           ?>
+    </body>
+</html>

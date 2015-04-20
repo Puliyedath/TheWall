@@ -1,7 +1,7 @@
 <!doctype html>
 <?php
-    require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
     session_start();
+    require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
 ?>
 <html>
     <head>
@@ -10,12 +10,13 @@
         <link rel="stylesheet" href="css/home.css">
     </head>
     <body>
-        <ul id="header">
-            <li><h2>Coding Dojo Wall</h2></li>
-            <li><h4>Welcome <?php echo $_SESSION['user_name']; ?></h4></li>
-            <li><a href="">Log Off</a></li>
-        </ul>
-
+        <form action="../controllers/logOff.php" method="get">
+            <ul id="header">
+                <li><h2>Coding Dojo Wall</h2></li>
+                <li><h4>Welcome <?php echo $_SESSION['user_name']; ?></h4></li>
+                <li><input type="submit" name="LogOff" value="LogOff"></li>
+            </ul>
+        </form>
 
         <form class="message" action="../controllers/postMessage.php" method="post">
             <ul>
