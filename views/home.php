@@ -10,14 +10,14 @@
         <link rel="stylesheet" href="css/home.css">
     </head>
     <body>
-        <ul>
-            <li><h3>Coding Dojo Wall</h3></li>
+        <ul id="header">
+            <li><h2>Coding Dojo Wall</h2></li>
             <li><h4>Welcome <?php echo $_SESSION['user_name']; ?></h4></li>
             <li><a href="">Log Off</a></li>
         </ul>
 
 
-        <form action="../controllers/postMessage.php" method="post">
+        <form class="message" action="../controllers/postMessage.php" method="post">
             <ul>
                 <li><h5>Post a Message</h5></li>
                 <li><input type="textarea" name="description" ></li>
@@ -27,46 +27,47 @@
 
 <?php
     function getComments($post_id){
-        $messages = fetch("select * from comments where comments.post_id = $post_id");
-        $temp="<ul>";
-        foreach($messages as $key=>$message){
-            $temp = $temp . "<li><p>{$message['description']}</p></li>";
+        //$messages = fetch("select * from comments where comments.post_id = $post_id");
+        $messages = fetch(join(" ",array(
+            "select comments.created_at, users.user_name,comments.description from comments",
+            "LEFT JOIN users", 
+            "ON comments.user_id = users.id where comments.post_id = $post_id"
+            )));
+
+        $temp="";
+        if (!(array_key_exists('description',$messages))){
+            foreach($messages as $key=>$message){
+                $date = new DateTime($message['created_at']);
+                $formateed_dateTime= $date->format('l jS F Y');
+                $temp = $temp . "<li class='comment pcomment' ><h5>{$message['user_name']} wrote on $formateed_dateTime</h5><p>{$message['description']}</p></li>";
+            }
+        }else{
+            //fix for the fact when the library returns only one row
+            $temp = $temp . "<li class='comment pcomment' ><p>{$messages['description']}</p></li>";
         }
 
         $temp =  $temp . join("",array(
             "<li>",
-            '<form action="../controllers/postComment.php" method="post">',
-            '<input type="hidden" name="hpost_id" value="' . $post_id. '">',
-            '<input type="textarea" name="description" >',
-            '<input type="submit" name="Post a comment" value="Post a comment">',
+            '<form class="comment" action="../controllers/postComment.php" method="post">',
+                '<input type="hidden" name="hpost_id" value="' . $post_id. '">',
+                '<input type="textarea" name="description" >',
+                '<input type="submit" name="Post a comment" value="Post a comment">',
             '</form>',
             "</li>",
         ));
-        $temp = $temp. "</ul>";
         return $temp;
     }
 ?>
         <ul>
 <?php 
     foreach($_SESSION['posts'] as $key=>$post){
-        echo "<li>";
-        echo "{$post['user_name']}-{$post['created_at']}";
+        $date = new DateTime($post['created_at']);
+        $formateed_dateTime= $date->format('l jS F Y');
+        echo "<li class='pmessage message'>";
+        echo "<h5>{$post['user_name']} wrote on $formateed_dateTime</h5>";
         echo "<p>{$post['description']}</p>";
-        echo getComments($post['id']);
-/*echo join("",array(
-                                "<ul>",
-                                "<li>",
-                                    '<form action="../controllers/postComment.php" method="post">',
-                                    '<input type="hidden" name="hpost_id" value="' ,
-                                                                                        "{$post['id']}",
-                                                                                                '">',
-                                        '<input type="textarea" name="description" >',
-                                        '<input type="submit" name="Post a comment" value="Post a comment">',
-                                    '</form>',
-                                "</li>",
-                            "</ul>"
-));*/
         echo "</li>";
+        echo getComments($post['id']);
     }
 ?>
         </ul>
