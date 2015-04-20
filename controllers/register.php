@@ -12,14 +12,15 @@
             run_mysql_query($query);
             $query = "select id,user_name from users where user_name='{$_POST['user_name']}' and password='{$_POST['password']}'";
             $user = fetch($query);
-            $_SESSION['user_id'] = $user[0]['id'];
-            $_SESSION['user_name'] = $user[0]['user_name'];
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['user_name'];
         },
         'login' => function(){
+            //this query should only return one result - validate that
             $query = "select id,user_name from users where user_name='{$_POST['user_name']}' and password='{$_POST['password']}'";
             $user = fetch($query);
-            $_SESSION['user_id'] = $user[0]['id'];
-            $_SESSION['user_name'] = $user[0]['user_name'];
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_name'] = $user['user_name'];
         }
     );
 
