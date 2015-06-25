@@ -77,7 +77,13 @@ require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
 				//fix for the fact when the library returns only one row
 				$date = new DateTime($message['created_at']);
 				$formateed_dateTime= $date->format('l jS F Y');
-				$temp = $temp . "<div class='panel panel-info' ><h5>{$messages['user_name']} wrote on $formateed_dateTime</h5><p>{$messages['description']}</p></div>";
+				$temp = $temp . "<div class='row'>";
+				$temp = $temp . "<div class='col-md-4'>";
+				$temp = $temp . "</div>";
+				$temp = $temp . "<div class='col-md-8'>";
+				$temp = $temp . "<div class='panel panel-success'><div class='panel-heading'<h5>{$messages['user_name']} wrote on $formateed_dateTime</h5></div><p>{$messages['description']}</p></div>";
+				$temp = $temp . "</div>";
+				$temp = $temp . "</div>";
 				//$temp = $temp . "<li class='comment pcomment' ><p>{$messages['description']}</p></li>";
 			}
 
