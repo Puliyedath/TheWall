@@ -8,9 +8,10 @@ require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
 		<title>Home</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/home.css" type="text/css" />
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class-="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#wallNavBar">
@@ -38,11 +39,11 @@ require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
 
 
 		
-		<div class="container">
+		<div class="container mcontainer">
 			<form action="../controllers/postMessage.php" method="post">
 				<div class="form-group">
 					<label for="message">Post a Message</label>
-					<input class="form-control" id="message" type="textarea" name="description" >
+					<textarea class="form-control" id="message" name="description" ></textarea>
 
 				</div>
 				<div class="form-group text-right">
@@ -94,7 +95,7 @@ require($_SERVER["DOCUMENT_ROOT"] . '/controllers/new-connection.php');
 					'<form class="col-md-8" action="../controllers/postComment.php" method="post">',
 					"<div class='form-group'>",
 					'<input type="hidden" name="hpost_id" value="' . $post_id . '">',
-					'<input class="form-control" type="textarea" name="description" >',
+					'<textarea class="form-control" name="description" ></textarea>',
 					"</div>",
 					"<div class='form-group text-right'>",
 					'<input class="btn btn-primary" type="submit" name="Post a comment" value="Post a comment">',
